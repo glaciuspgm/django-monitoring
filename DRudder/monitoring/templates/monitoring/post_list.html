@@ -1,11 +1,13 @@
-<div>
-    <h1><a href="/">Django Monitoring</a></h1>
-</div>
+{% extends 'monitoring/base.html' %}
 
-{% for post in posts %}
-    <div>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <p>publié: {{ post.published_date }}</p>
-    </div>
-{% endfor %}
+{% block content %}
+	{% for post in posts %}
+	    <div class="post">
+	        <div class="date">
+	        	{{ post.published_date }}
+	        </div>
+	        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+	        <p>{{ post.text|linebreaksbr }}</p>
+	    </div>
+	{% endfor %}
+{% endblock content %}
